@@ -1,0 +1,14 @@
+{
+  "name": "jobaton-oss",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Self-hosted AI-powered job search toolkit",
+  "scripts": {
+    "dev": "concurrently \"pnpm --filter api dev\" \"pnpm --filter web dev\"",
+    "build": "pnpm --filter web build && pnpm --filter api build",
+    "start": "node api/dist/index.js"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

@@ -1,0 +1,27 @@
+# Jobaton OSS — Single container deployment
+#
+# Usage:
+#   docker compose up --build        # build & start
+#   docker compose up -d             # detached
+#   docker compose down              # stop
+#
+# Open http://localhost:3050 in your browser
+
+services:
+  jobaton:
+    build: .
+    ports:
+      - "3050:3001"
+    environment:
+      - NODE_ENV=production
+      - API_PORT=3001
+      - DATA_DIR=/app/data
+      # Set your OpenAI key here OR configure it in the Settings UI
+      # - OPENAI_API_KEY=sk-...
+    volumes:
+      # Persist data (resumes, cover letters, settings) across restarts
+      - jobaton_data:/app/data
+    restart: unless-stopped
+
+volumes:
+  jobaton_data:
